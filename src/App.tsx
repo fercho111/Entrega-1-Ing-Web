@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router";
 import AppNavbar from "./components/layout/AppNavbar";
-import { AppProvider } from "./context/AppContext";
+import { AppProvider } from "./context/AppProvider.tsx";
 import CreateParchePage from "./pages/CreateParchePage";
 import CreatePlanPage from "./pages/CreatePlanPage";
 import HomePage from "./pages/HomePage";

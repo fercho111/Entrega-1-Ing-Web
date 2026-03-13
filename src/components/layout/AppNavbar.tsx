@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { useAppContext } from "../../context/AppContext";
+import { useAppContext } from "../../context/useAppContext";
 
 export default function AppNavbar() {
   const { currentUser, logout } = useAppContext();
