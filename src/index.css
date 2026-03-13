@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  background-color: #f5f7fb;
+  min-width: 320px;
+}
+
+.card-cover {
+  height: 180px;
+  object-fit: cover;
+}
