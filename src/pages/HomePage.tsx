@@ -1,7 +1,7 @@
 import { Link, Navigate } from "react-router";
 import ParcheCard from "../components/parches/ParcheCard";
 import EmptyState from "../components/ui/EmptyState";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../context/useAppContext";
 
 export default function HomePage() {
   const { currentUser, parches } = useAppContext();

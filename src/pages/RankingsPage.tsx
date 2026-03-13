@@ -1,5 +1,5 @@
 import { Link, Navigate } from "react-router";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../context/useAppContext";
 import { AttendanceStatusEnum, PlanStateEnum } from "../types";
 
 type RankingRow = {
