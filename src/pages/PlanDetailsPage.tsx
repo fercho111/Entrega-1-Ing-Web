@@ -138,7 +138,7 @@ export default function PlanDetailsPage() {
                       : voteForOption(plan.id, option.id)
                   }
                 >
-                  {isMyVote ? "Undo vote" : "Vote for this option"}
+                  {isMyVote ? "Undo vote" : "Vote"}
                 </button>
               )}
             </div>
@@ -163,9 +163,34 @@ export default function PlanDetailsPage() {
             .map((item) => {
               const user = users.find((u) => u.id === item.userId);
               return (
-                <li key={`${item.planId}-${item.userId}`} className="list-group-item d-flex justify-content-between">
-                  <span>{user?.fullName ?? "Unknown"}</span>
-                  <span>{item.status} {item.checkedIn ? "✅" : ""}</span>
+                <li
+                  key={`${item.planId}-${item.userId}`}
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div className="d-flex align-items-center gap-2">
+                    {user?.avatarUrl ? (
+                      <img
+                        src={user.avatarUrl}
+                        alt={user.fullName}
+                        width={32}
+                        height={32}
+                        className="rounded-circle"
+                      />
+                    ) : (
+                      <div
+                        className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+                        style={{ width: 32, height: 32, fontSize: 12 }}
+                      >
+                        {user?.fullName?.charAt(0) ?? "?"}
+                      </div>
+                    )}
+
+                    <span>{user?.fullName ?? "Unknown"}</span>
+                  </div>
+
+                  <span>
+                    {item.status} {item.checkedIn ? "✅" : ""}
+                  </span>
                 </li>
               );
             })}

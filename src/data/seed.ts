@@ -11,15 +11,15 @@ import {
 
 export const seedUsers: User[] = [
   { id: 1, fullName: 'Fernando Gómez', email: 'fer@uni.edu', major: 'Física', password: '1234' },
-  { id: 2, fullName: 'Carlos Rosado', email: 'carlos@uni.edu', major: 'Ingeniería Mecatrónica', avatarUrl: 'https://i.pravatar.cc/80?img=12', password: '1234' },
-  { id: 3, fullName: 'Sara López', email: 'sara@uni.edu', major: 'Ingeniería Administrativa', avatarUrl: 'https://i.pravatar.cc/80?img=32', password: '1234' },
+  { id: 2, fullName: 'Carlos Rosado', email: 'carlos@uni.edu', major: 'Ingeniería Mecatrónica', password: '1234' },
+  { id: 3, fullName: 'Sara López', email: 'sara@uni.edu', major: 'Ingeniería Administrativa', avatarUrl: 'https://i.pravatar.cc/80?img=9', password: '1234' },
   { id: 4, fullName: 'Daniel Pardo', email: 'daniel@uni.edu', major: 'Medicina', password: '1234' },
-  { id: 5, fullName: 'Camila Ríos', email: 'camila@uni.edu', major: 'Ingeniería de Sistemas', password: '1234' },
+  { id: 5, fullName: 'Camila Ríos', email: 'camila@uni.edu', major: 'Ingeniería de Sistemas', avatarUrl: 'https://i.pravatar.cc/80?img=16', password: '1234' },
   { id: 6, fullName: 'Nicolás Mejía', email: 'nico@uni.edu', major: 'Ingeniería de Sistemas', password: '1234' },
-  { id: 7, fullName: 'Valentina Pérez', email: 'vale@uni.edu', major: 'Ingeniería Mecánica', password: '1234' },
+  { id: 7, fullName: 'Valentina Pérez', email: 'vale@uni.edu', major: 'Ingeniería Mecánica', avatarUrl: 'https://i.pravatar.cc/80?img=24', password: '1234' },
   { id: 8, fullName: 'Felipe Ortiz', email: 'felipe@uni.edu', major: 'Economía', password: '1234' },
   { id: 9, fullName: 'Juliana Castro', email: 'juli@uni.edu', major: 'Ingeniería Biotecnológica', avatarUrl: 'https://i.pravatar.cc/80?img=5', password: '1234' },
-  { id: 10, fullName: 'Andrés Quintero', email: 'andres@uni.edu', major: 'Ingeniería Civil', password: '1234' }
+  { id: 10, fullName: 'Andrés Quintero', email: 'andres@uni.edu', major: 'Ingeniería Civil', avatarUrl: 'https://i.pravatar.cc/80?img=12', password: '1234' }
 ];
 
 export const seedParches: Parche[] = [

@@ -56,7 +56,28 @@ export default function ParcheDetailsPage() {
 
                 return (
                   <tr key={member.userId}>
-                    <td>{user?.fullName ?? "Unknown"}</td>
+                  <td>
+                    <div className="d-flex align-items-center gap-2">
+                      {user?.avatarUrl ? (
+                        <img
+                          src={user.avatarUrl}
+                          alt={user.fullName}
+                          width={32}
+                          height={32}
+                          className="rounded-circle"
+                        />
+                      ) : (
+                        <div
+                          className="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+                          style={{ width: 32, height: 32, fontSize: 12 }}
+                        >
+                          {user?.fullName?.charAt(0) ?? "?"}
+                        </div>
+                      )}
+                      <span>{user?.fullName ?? "Unknown"}</span>
+                    </div>
+                  </td>
+
                     <td>{member.role}</td>
                     <td>
                       {canManageRoles && !isOwner ? (
