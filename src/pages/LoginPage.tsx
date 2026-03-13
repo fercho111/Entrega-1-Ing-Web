@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../context/useAppContext";
 
 export default function LoginPage() {
   const { login, currentUser } = useAppContext();
