@@ -49,6 +49,7 @@ export type AppContextType = {
   createPlan: (data: NewPlanData) => { success: boolean; message: string };
   movePlanState: (planId: number) => void;
   voteForOption: (planId: number, optionId: number) => void;
+  removeVote: (planId: number) => void;
   closeVotingIfTimePassed: () => void;
   setAttendance: (planId: number, status: AttendanceStatusEnum) => void;
   setCheckIn: (planId: number) => void;

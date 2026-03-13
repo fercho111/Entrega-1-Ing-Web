@@ -25,8 +25,8 @@ export const seedUsers: User[] = [
 export const seedParches: Parche[] = [
   {
     id: 1,
-    name: "Parche Campus Norte",
-    description: "Grupo para salir después de clase en la sede norte.",
+    name: "Parche Envigado",
+    description: "Grupo para salir después de clase en Envigado.",
     coverImageUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
     inviteCode: "NORTE-123",
     members: [

@@ -15,6 +15,7 @@ export default function PlanDetailsPage() {
     attendance,
     movePlanState,
     voteForOption,
+    removeVote,
     setAttendance,
     setCheckIn,
     closeVotingIfTimePassed,
@@ -50,6 +51,7 @@ export default function PlanDetailsPage() {
 
   const totalVotes = votes.filter((vote) => vote.planId === plan.id).length;
   const myAttendance = attendance.find((item) => item.planId === plan.id && item.userId === currentUser.id);
+  const myVote = votes.find((vote) => vote.planId === plan.id && vote.userId === currentUser.id);
 
   function getPercentage(optionVotes: number): number {
     if (totalVotes === 0) {
@@ -90,22 +92,55 @@ export default function PlanDetailsPage() {
       </section>
 
       <section className="card shadow-sm p-4 mb-3">
-        <h2 className="h5">Voting options</h2>
+        <div className="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <h2 className="h5 mb-0">Voting options</h2>
+          {myVote && <span className="badge bg-primary">You already voted</span>}
+        </div>
+
         {plan.options.map((option) => {
-          const optionVotes = votes.filter((vote) => vote.planId === plan.id && vote.optionId === option.id).length;
+          const optionVotes = votes.filter(
+            (vote) => vote.planId === plan.id && vote.optionId === option.id
+          ).length;
+
           const percentage = getPercentage(optionVotes);
           const isVotingOpen = plan.state === PlanStateEnum.votingOpen;
+          const isMyVote = myVote?.optionId === option.id;
 
           return (
-            <div key={option.id} className="border rounded p-3 mb-2">
-              <p className="mb-1"><strong>{option.place}</strong> at {option.time}</p>
-              <p className="small text-muted mb-2">{optionVotes} votes ({percentage}%)</p>
+            <div
+              key={option.id}
+              className={`border rounded p-3 mb-2 ${isMyVote ? "border-primary bg-primary-subtle shadow-sm" : ""}`}
+            >
+              <div className="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                <div>
+                  <p className="mb-1">
+                    <strong>{option.place}</strong> at {option.time}
+                  </p>
+                  <p className="small text-muted mb-2">
+                    {optionVotes} votes ({percentage}%)
+                  </p>
+                </div>
+
+                <div className="d-flex flex-wrap align-items-center gap-2">
+                  {isMyVote && <span className="badge bg-primary">Your vote</span>}
+                  {plan.winningOptionId === option.id && (
+                    <span className="badge bg-success">Winner</span>
+                  )}
+                </div>
+              </div>
+
               {isVotingOpen && (
-                <button className="btn btn-primary btn-sm" onClick={() => voteForOption(plan.id, option.id)}>
-                  Vote for this option
+                <button
+                  className={`btn btn-sm ${isMyVote ? "btn-outline-danger" : "btn-primary"}`}
+                  onClick={() =>
+                    isMyVote
+                      ? removeVote(plan.id)
+                      : voteForOption(plan.id, option.id)
+                  }
+                >
+                  {isMyVote ? "Undo vote" : "Vote for this option"}
                 </button>
               )}
-              {plan.winningOptionId === option.id && <span className="badge bg-success ms-2">Winner</span>}
             </div>
           );
         })}

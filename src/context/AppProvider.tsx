@@ -286,6 +286,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
     });
   }
 
+  function removeVote(planId: number) {
+    if (!currentUser) {
+      return;
+    }
+
+    setVotes((previousVotes) =>
+      previousVotes.filter(
+        (vote) => !(vote.planId === planId && vote.userId === currentUser.id)
+      )
+    );
+  }
+
+
   const closeVotingIfTimePassed = useCallback(() => {
     setPlans((previousPlans) => {
       let hasChanges = false;
@@ -369,6 +382,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     createPlan,
     movePlanState,
     voteForOption,
+    removeVote,
     closeVotingIfTimePassed,
     setAttendance,
     setCheckIn,
