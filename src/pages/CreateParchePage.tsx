@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { useAppContext } from "../context/useAppContext";
 
@@ -16,7 +16,7 @@ export default function CreateParchePage() {
     return <Navigate to="/login" replace />;
   }
 
-  function handleCreateParche(event: FormEvent<HTMLFormElement>) {
+  function handleCreateParche(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!name || !description || !coverImageUrl) {
@@ -27,7 +27,7 @@ export default function CreateParchePage() {
     navigate("/");
   }
 
-  function handleJoinParche(event: FormEvent<HTMLFormElement>) {
+  function handleJoinParche(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!inviteCode) {

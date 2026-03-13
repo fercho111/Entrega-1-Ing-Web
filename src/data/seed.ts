@@ -11,7 +11,7 @@ import {
 
 export const seedUsers: User[] = [
   { id: 1, fullName: 'Fernando Gómez', email: 'fer@uni.edu', major: 'Física', password: '1234' },
-  { id: 2, fullName: 'Mateo Ruiz', email: 'mateo@uni.edu', major: 'Ingeniería Civil', avatarUrl: 'https://i.pravatar.cc/80?img=12', password: '1234' },
+  { id: 2, fullName: 'Carlos Rosado', email: 'carlos@uni.edu', major: 'Ingeniería Mecatrónica', avatarUrl: 'https://i.pravatar.cc/80?img=12', password: '1234' },
   { id: 3, fullName: 'Sara López', email: 'sara@uni.edu', major: 'Ingeniería Administrativa', avatarUrl: 'https://i.pravatar.cc/80?img=32', password: '1234' },
   { id: 4, fullName: 'Daniel Pardo', email: 'daniel@uni.edu', major: 'Medicina', password: '1234' },
   { id: 5, fullName: 'Camila Ríos', email: 'camila@uni.edu', major: 'Ingeniería de Sistemas', password: '1234' },
@@ -19,16 +19,16 @@ export const seedUsers: User[] = [
   { id: 7, fullName: 'Valentina Pérez', email: 'vale@uni.edu', major: 'Ingeniería Mecánica', password: '1234' },
   { id: 8, fullName: 'Felipe Ortiz', email: 'felipe@uni.edu', major: 'Economía', password: '1234' },
   { id: 9, fullName: 'Juliana Castro', email: 'juli@uni.edu', major: 'Ingeniería Biotecnológica', avatarUrl: 'https://i.pravatar.cc/80?img=5', password: '1234' },
-  { id: 10, fullName: 'Andrés Quintero', email: 'andres@uni.edu', major: 'Ingeniería Mecatrónica', password: '1234' }
+  { id: 10, fullName: 'Andrés Quintero', email: 'andres@uni.edu', major: 'Ingeniería Civil', password: '1234' }
 ];
 
 export const seedParches: Parche[] = [
   {
     id: 1,
-    name: "Parche Envigado",
-    description: "Grupo para salir después de clase en Envigado.",
-    coverImageUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
-    inviteCode: "NORTE-123",
+    name: "Parche Viernes Chill",
+    description: "Planear salidas tranquilas para los viernes.",
+    coverImageUrl: "https://estaticos.elcolombiano.com/binrepository/861x565/41c0/780d565/none/11101/CUCC/whatsapp-image-2023-10-17-at-2-46-07-pm_43526598_20231017145219.jpg",
+    inviteCode: "CHILL-123",
     members: [
       { userId: 1, role: ParcheRoleEnum.owner },
       { userId: 2, role: ParcheRoleEnum.moderator },
@@ -40,10 +40,10 @@ export const seedParches: Parche[] = [
   },
   {
     id: 2,
-    name: "Parche Viernes Chill",
-    description: "Planear salidas tranquilas para los viernes.",
-    coverImageUrl: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800",
-    inviteCode: "CHILL-456",
+    name: "Parche Envigado",
+    description: "Grupo para salir después de clase en Envigado.",
+    coverImageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/21/Envigad_foto_alcaldia-de-envigado.png",
+    inviteCode: "SUR-456",
     members: [
       { userId: 7, role: ParcheRoleEnum.owner },
       { userId: 8, role: ParcheRoleEnum.moderator },
@@ -61,6 +61,10 @@ export const seedPlans: Plan[] = Array.from({ length: 15 }, (_, index) => {
   const parcheId = isFirstParche ? 1 : 2;
   const createdBy = isFirstParche ? 1 : 7;
 
+  const now = new Date();
+  const checkInStartDate = new Date(now.getTime() - 60 * 60 * 1000); // 1 hour ago
+  const checkInEndDate = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
+
   return {
     id: planId,
     parcheId,
@@ -71,14 +75,14 @@ export const seedPlans: Plan[] = Array.from({ length: 15 }, (_, index) => {
     dateEnd: "2026-03-20",
     state: planId % 4 === 0 ? PlanStateEnum.scheduled : PlanStateEnum.votingOpen,
     options: [
-      { id: planId * 10 + 1, place: "Café Central", time: "18:00" },
-      { id: planId * 10 + 2, place: "Parque Verde", time: "19:00" },
-      { id: planId * 10 + 3, place: "Plazoleta", time: "20:00" },
+      { id: planId * 10 + 1, place: "Calle de la Cultura", time: "10:00" },
+      { id: planId * 10 + 2, place: "Terraza Bloque A", time: "14:00" },
+      { id: planId * 10 + 3, place: "Nativos", time: "12:00" },
     ],
     winningOptionId: planId % 4 === 0 ? planId * 10 + 1 : undefined,
     votingDeadline: "2099-12-31T23:59",
-    checkInStart: "2026-03-15T18:00",
-    checkInEnd: "2026-03-15T21:00",
+    checkInStart: checkInStartDate.toISOString(),
+    checkInEnd: checkInEndDate.toISOString(),
   };
 });
 

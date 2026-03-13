@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { Navigate, useNavigate, useParams } from "react-router";
 import { useAppContext } from "../context/useAppContext";
 
@@ -48,7 +48,7 @@ export default function CreatePlanPage() {
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     setErrorMessage("");
 
