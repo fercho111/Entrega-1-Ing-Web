@@ -1,7 +1,7 @@
 import { Link, Navigate, useParams } from "react-router";
 import EmptyState from "../components/ui/EmptyState";
 import PlanCard from "../components/plans/PlanCard";
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../context/useAppContext";
 import { ParcheRoleEnum } from "../types";
 
 export default function ParcheDetailsPage() {

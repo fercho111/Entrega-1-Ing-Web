@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router";
 import EmptyState from "../components/ui/EmptyState";
-import { useAppContext } from "../context/AppContext";
-import { AttendanceStatusEnum, ParcheRoleEnum, PlanStateEnum } from "../types";
+import { useAppContext } from "../context/useAppContext";
+import { AttendanceStatusEnum, ParcheRoleEnum, PlanStateEnum, type Plan } from "../types";
 
 export default function PlanDetailsPage() {
   const { id } = useParams();
@@ -59,12 +59,13 @@ export default function PlanDetailsPage() {
     return Math.round((optionVotes / totalVotes) * 100);
   }
 
-  function getNextStateButtonText(): string {
+  function getNextStateButtonText(plan: Plan): string {
     if (plan.state === PlanStateEnum.draft) return "Open voting";
     if (plan.state === PlanStateEnum.votingOpen) return "Close voting";
     if (plan.state === PlanStateEnum.votingClosed) return "Schedule plan";
     return "No more actions";
   }
+
 
   const checkInNow = new Date();
   const checkInStart = new Date(plan.checkInStart);
@@ -83,7 +84,7 @@ export default function PlanDetailsPage() {
             <p className="small mb-0"><strong>State:</strong> {plan.state}</p>
           </div>
           {canManageState && plan.state !== PlanStateEnum.scheduled && (
-            <button className="btn btn-outline-dark" onClick={() => movePlanState(plan.id)}>{getNextStateButtonText()}</button>
+            <button className="btn btn-outline-dark" onClick={() => movePlanState(plan.id)}>{getNextStateButtonText(plan)}</button>
           )}
         </div>
       </section>
